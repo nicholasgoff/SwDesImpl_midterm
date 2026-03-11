@@ -3,6 +3,7 @@ package nl.tudelft.jpacman.ui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 import javax.swing.JPanel;
 
@@ -89,7 +90,7 @@ class BoardPanel extends JPanel {
                 int cellX = x * cellW;
                 int cellY = y * cellH;
                 Square square = board.squareAt(x, y);
-                render(square, graphics, cellX, cellY, cellW, cellH);
+                render(square, graphics, new Rectangle(cellX, cellY, cellW, cellH));
             }
         }
     }
@@ -102,19 +103,13 @@ class BoardPanel extends JPanel {
      *            The square to render.
      * @param graphics
      *            The graphics context to draw on.
-     * @param x
-     *            The x position to start drawing.
-     * @param y
-     *            The y position to start drawing.
-     * @param width
-     *            The width of this square (in pixels.)
-     * @param height
-     *            The height of this square (in pixels.)
+     * @param bounds
+     *            The rectangle bounds where the square should be rendered.
      */
-    private void render(Square square, Graphics graphics, int x, int y, int width, int height) {
-        square.getSprite().draw(graphics, x, y, width, height);
+    private void render(Square square, Graphics graphics, Rectangle bounds) {
+        square.getSprite().draw(graphics, bounds.x, bounds.y, bounds.width, bounds.height);
         for (Unit unit : square.getOccupants()) {
-            unit.getSprite().draw(graphics, x, y, width, height);
+            unit.getSprite().draw(graphics, bounds.x, bounds.y, bounds.width, bounds.height);
         }
     }
 }
