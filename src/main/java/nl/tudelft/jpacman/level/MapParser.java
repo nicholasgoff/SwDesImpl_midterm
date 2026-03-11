@@ -1,10 +1,7 @@
 package nl.tudelft.jpacman.level;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
 
 import nl.tudelft.jpacman.PacmanConfigurationException;
@@ -12,7 +9,6 @@ import nl.tudelft.jpacman.board.Board;
 import nl.tudelft.jpacman.board.BoardFactory;
 import nl.tudelft.jpacman.board.Square;
 import nl.tudelft.jpacman.npc.Ghost;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 /**
  * Creates new {@link Level}s from text representations.
@@ -32,6 +28,11 @@ public class MapParser {
     private final BoardFactory boardCreator;
 
     /**
+     * Utility dedicated to map text validation and conversion.
+     */
+    private final MapTextParser textParser;
+
+    /**
      * Creates a new map parser.
      *
      * @param levelFactory
@@ -42,6 +43,7 @@ public class MapParser {
     public MapParser(LevelFactory levelFactory, BoardFactory boardFactory) {
         this.levelCreator = levelFactory;
         this.boardCreator = boardFactory;
+        this.textParser = new MapTextParser();
     }
 
     /**
@@ -79,46 +81,6 @@ public class MapParser {
                 addSquare(buildState.getGrid(), buildState.getGhosts(),
                     buildState.getStartPositions(), x, y, c);
             }
-        }
-    }
-
-    /**
-     * Mutable state used while building the level grid from map characters.
-     */
-    private static final class MapBuildState {
-
-        private final int width;
-        private final int height;
-        private final Square[][] grid;
-        private final List<Ghost> ghosts;
-        private final List<Square> startPositions;
-
-        MapBuildState(int width, int height) {
-            this.width = width;
-            this.height = height;
-            this.grid = new Square[width][height];
-            this.ghosts = new ArrayList<>();
-            this.startPositions = new ArrayList<>();
-        }
-
-        int getWidth() {
-            return width;
-        }
-
-        int getHeight() {
-            return height;
-        }
-
-        Square[][] getGrid() {
-            return grid;
-        }
-
-        List<Ghost> getGhosts() {
-            return ghosts;
-        }
-
-        List<Square> getStartPositions() {
-            return startPositions;
         }
     }
 
@@ -198,50 +160,7 @@ public class MapParser {
      * @throws PacmanConfigurationException If text lines are not properly formatted.
      */
     public Level parseMap(List<String> text) {
-
-        checkMapFormat(text);
-
-        int height = text.size();
-        int width = text.get(0).length();
-
-        char[][] map = new char[width][height];
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                map[x][y] = text.get(y).charAt(x);
-            }
-        }
-        return parseMap(map);
-    }
-
-    /**
-     * Check the correctness of the map lines in the text.
-     * @param text Map to be checked
-     * @throws PacmanConfigurationException if map is not OK.
-     */
-    private void checkMapFormat(List<String> text) {
-        if (text == null) {
-            throw new PacmanConfigurationException(
-                "Input text cannot be null.");
-        }
-
-        if (text.isEmpty()) {
-            throw new PacmanConfigurationException(
-                "Input text must consist of at least 1 row.");
-        }
-
-        int width = text.get(0).length();
-
-        if (width == 0) {
-            throw new PacmanConfigurationException(
-                "Input text lines cannot be empty.");
-        }
-
-        for (String line : text) {
-            if (line.length() != width) {
-                throw new PacmanConfigurationException(
-                    "Input text lines are not of equal width.");
-            }
-        }
+        return parseMap(textParser.toMap(text));
     }
 
     /**
@@ -255,14 +174,7 @@ public class MapParser {
      *             when the source could not be read.
      */
     public Level parseMap(InputStream source) throws IOException {
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(
-            source, "UTF-8"))) {
-            List<String> lines = new ArrayList<>();
-            while (reader.ready()) {
-                lines.add(reader.readLine());
-            }
-            return parseMap(lines);
-        }
+        return parseMap(textParser.readLines(source));
     }
 
     /**
@@ -275,17 +187,8 @@ public class MapParser {
      * @throws IOException
      *             when the resource could not be read.
      */
-    @SuppressFBWarnings(
-        value = {"OBL_UNSATISFIED_OBLIGATION", "RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE"},
-        justification = "try with resources always cleans up / false positive in java 11"
-    )
     public Level parseMap(String mapName) throws IOException {
-        try (InputStream boardStream = MapParser.class.getResourceAsStream(mapName)) {
-            if (boardStream == null) {
-                throw new PacmanConfigurationException("Could not get resource for: " + mapName);
-            }
-            return parseMap(boardStream);
-        }
+        return parseMap(textParser.readResourceLines(MapParser.class, mapName));
     }
 
     /**
