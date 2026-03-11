@@ -4,18 +4,11 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.List;
 
-import nl.tudelft.jpacman.board.BoardFactory;
 import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.game.Game;
 import nl.tudelft.jpacman.game.GameFactory;
 import nl.tudelft.jpacman.level.Level;
-import nl.tudelft.jpacman.level.LevelFactory;
-import nl.tudelft.jpacman.level.MapParser;
 import nl.tudelft.jpacman.level.Player;
-import nl.tudelft.jpacman.level.PlayerFactory;
-import nl.tudelft.jpacman.npc.ghost.GhostFactory;
-import nl.tudelft.jpacman.points.PointCalculator;
-import nl.tudelft.jpacman.points.PointCalculatorLoader;
 import nl.tudelft.jpacman.sprite.PacManSprites;
 import nl.tudelft.jpacman.ui.Action;
 import nl.tudelft.jpacman.ui.PacManUI;
@@ -26,10 +19,10 @@ import nl.tudelft.jpacman.ui.PacManUiBuilder;
  * 
  * @author Jeroen Roosen
  */
-@SuppressWarnings("PMD.TooManyMethods")
 public class Launcher {
 
     private static final PacManSprites SPRITE_STORE = new PacManSprites();
+    private final LauncherFactoryProvider factoryProvider = new LauncherFactoryProvider(SPRITE_STORE);
 
     public static final String DEFAULT_MAP = "/board.txt";
     private String levelMap = DEFAULT_MAP;
@@ -72,14 +65,10 @@ public class Launcher {
      * @return a new Game.
      */
     public Game makeGame() {
-        GameFactory gf = getGameFactory();
+        GameFactory gf = factoryProvider.createGameFactory();
         Level level = makeLevel();
-        game = gf.createSinglePlayerGame(level, loadPointCalculator());
+        game = gf.createSinglePlayerGame(level, factoryProvider.loadPointCalculator());
         return game;
-    }
-
-    private PointCalculator loadPointCalculator() {
-        return new PointCalculatorLoader().load();
     }
 
     /**
@@ -90,63 +79,11 @@ public class Launcher {
      */
     public Level makeLevel() {
         try {
-            return getMapParser().parseMap(getLevelMap());
+            return factoryProvider.createMapParser().parseMap(getLevelMap());
         } catch (IOException e) {
             throw new PacmanConfigurationException(
                     "Unable to create level, name = " + getLevelMap(), e);
         }
-    }
-
-    /**
-     * @return A new map parser object using the factories from
-     *         {@link #getLevelFactory()} and {@link #getBoardFactory()}.
-     */
-    protected MapParser getMapParser() {
-        return new MapParser(getLevelFactory(), getBoardFactory());
-    }
-
-    /**
-     * @return A new board factory using the sprite store from
-     *         {@link #getSpriteStore()}.
-     */
-    protected BoardFactory getBoardFactory() {
-        return new BoardFactory(getSpriteStore());
-    }
-
-    /**
-     * @return The default {@link PacManSprites}.
-     */
-    protected PacManSprites getSpriteStore() {
-        return SPRITE_STORE;
-    }
-
-    /**
-     * @return A new factory using the sprites from {@link #getSpriteStore()}
-     *         and the ghosts from {@link #getGhostFactory()}.
-     */
-    protected LevelFactory getLevelFactory() {
-        return new LevelFactory(getSpriteStore(), getGhostFactory(), loadPointCalculator());
-    }
-
-    /**
-     * @return A new factory using the sprites from {@link #getSpriteStore()}.
-     */
-    protected GhostFactory getGhostFactory() {
-        return new GhostFactory(getSpriteStore());
-    }
-
-    /**
-     * @return A new factory using the players from {@link #getPlayerFactory()}.
-     */
-    protected GameFactory getGameFactory() {
-        return new GameFactory(getPlayerFactory());
-    }
-
-    /**
-     * @return A new factory using the sprites from {@link #getSpriteStore()}.
-     */
-    protected PlayerFactory getPlayerFactory() {
-        return new PlayerFactory(getSpriteStore());
     }
 
     /**
