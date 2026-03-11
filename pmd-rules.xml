@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="Midterm PMD Rules"
+    xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.github.io/pmd-6.0.0/ruleset_xml_schema.xsd">
+
+    <description>
+        PMD rules focused on code-smell analysis for the midterm assignment.
+    </description>
+
+    <rule ref="category/java/design.xml/ExcessiveClassLength">
+        <properties>
+            <property name="minimum" value="150" />
+        </properties>
+    </rule>
+
+    <rule ref="category/java/design.xml/ExcessiveParameterList">
+        <properties>
+            <property name="minimum" value="4" />
+        </properties>
+    </rule>
+
+    <rule ref="category/java/design.xml/GodClass" />
+</ruleset>
