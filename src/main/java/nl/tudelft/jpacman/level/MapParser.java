@@ -65,24 +65,60 @@ public class MapParser {
         int width = map.length;
         int height = map[0].length;
 
-        Square[][] grid = new Square[width][height];
+        MapBuildState buildState = new MapBuildState(width, height);
+        makeGrid(map, buildState);
 
-        List<Ghost> ghosts = new ArrayList<>();
-        List<Square> startPositions = new ArrayList<>();
-
-        makeGrid(map, width, height, grid, ghosts, startPositions);
-
-        Board board = boardCreator.createBoard(grid);
-        return levelCreator.createLevel(board, ghosts, startPositions);
+        Board board = boardCreator.createBoard(buildState.getGrid());
+        return levelCreator.createLevel(board, buildState.getGhosts(), buildState.getStartPositions());
     }
 
-    private void makeGrid(char[][] map, int width, int height,
-                          Square[][] grid, List<Ghost> ghosts, List<Square> startPositions) {
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
+    private void makeGrid(char[][] map, MapBuildState buildState) {
+        for (int x = 0; x < buildState.getWidth(); x++) {
+            for (int y = 0; y < buildState.getHeight(); y++) {
                 char c = map[x][y];
-                addSquare(grid, ghosts, startPositions, x, y, c);
+                addSquare(buildState.getGrid(), buildState.getGhosts(),
+                    buildState.getStartPositions(), x, y, c);
             }
+        }
+    }
+
+    /**
+     * Mutable state used while building the level grid from map characters.
+     */
+    private static final class MapBuildState {
+
+        private final int width;
+        private final int height;
+        private final Square[][] grid;
+        private final List<Ghost> ghosts;
+        private final List<Square> startPositions;
+
+        MapBuildState(int width, int height) {
+            this.width = width;
+            this.height = height;
+            this.grid = new Square[width][height];
+            this.ghosts = new ArrayList<>();
+            this.startPositions = new ArrayList<>();
+        }
+
+        int getWidth() {
+            return width;
+        }
+
+        int getHeight() {
+            return height;
+        }
+
+        Square[][] getGrid() {
+            return grid;
+        }
+
+        List<Ghost> getGhosts() {
+            return ghosts;
+        }
+
+        List<Square> getStartPositions() {
+            return startPositions;
         }
     }
 
