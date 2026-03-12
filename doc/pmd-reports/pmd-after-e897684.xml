@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd xmlns="http://pmd.sourceforge.net/report/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/report/2.0.0 http://pmd.sourceforge.net/report_2_0_0.xsd"
+    version="6.8.0" timestamp="2026-03-11T20:44:39.056">
+<file name="C:\UNCC\midtermSoftware\_tmp_pmd_after_refactoring\src\main\java\nl\tudelft\jpacman\level\CollisionInteractionMap.java">
+<violation beginline="16" endline="251" begincolumn="8" endcolumn="1" rule="ExcessiveClassLength" ruleset="Design" package="nl.tudelft.jpacman.level" class="CollisionInteractionMap" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_design.html#excessiveclasslength" priority="3">
+Avoid really long classes.
+</violation>
+<violation beginline="71" endline="73" begincolumn="63" endcolumn="41" rule="ExcessiveParameterList" ruleset="Design" package="nl.tudelft.jpacman.level" class="CollisionInteractionMap" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_design.html#excessiveparameterlist" priority="3">
+Avoid long parameter lists.
+</violation>
+</file>
+<file name="C:\UNCC\midtermSoftware\_tmp_pmd_after_refactoring\src\main\java\nl\tudelft\jpacman\level\Level.java">
+<violation beginline="27" endline="375" begincolumn="8" endcolumn="1" rule="ExcessiveClassLength" ruleset="Design" package="nl.tudelft.jpacman.level" class="Level" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_design.html#excessiveclasslength" priority="3">
+Avoid really long classes.
+</violation>
+<violation beginline="93" endline="94" begincolumn="17" endcolumn="43" rule="ExcessiveParameterList" ruleset="Design" package="nl.tudelft.jpacman.level" class="Level" method="Level" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_design.html#excessiveparameterlist" priority="3">
+Avoid long parameter lists.
+</violation>
+</file>
+<file name="C:\UNCC\midtermSoftware\_tmp_pmd_after_refactoring\src\main\java\nl\tudelft\jpacman\level\MapParser.java">
+<violation beginline="18" endline="200" begincolumn="8" endcolumn="1" rule="ExcessiveClassLength" ruleset="Design" package="nl.tudelft.jpacman.level" class="MapParser" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_design.html#excessiveclasslength" priority="3">
+Avoid really long classes.
+</violation>
+<violation beginline="107" endline="108" begincolumn="29" endcolumn="79" rule="ExcessiveParameterList" ruleset="Design" package="nl.tudelft.jpacman.level" class="MapParser" method="addSquare" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_design.html#excessiveparameterlist" priority="3">
+Avoid long parameter lists.
+</violation>
+</file>
+<file name="C:\UNCC\midtermSoftware\_tmp_pmd_after_refactoring\src\main\java\nl\tudelft\jpacman\npc\ghost\Navigation.java">
+<violation beginline="18" endline="236" begincolumn="14" endcolumn="1" rule="ExcessiveClassLength" ruleset="Design" package="nl.tudelft.jpacman.npc.ghost" class="Navigation" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_design.html#excessiveclasslength" priority="3">
+Avoid really long classes.
+</violation>
+<violation beginline="63" endline="64" begincolumn="38" endcolumn="84" rule="ExcessiveParameterList" ruleset="Design" package="nl.tudelft.jpacman.npc.ghost" class="Navigation" method="addNewTargets" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_design.html#excessiveparameterlist" priority="3">
+Avoid long parameter lists.
+</violation>
+</file>
+<file name="C:\UNCC\midtermSoftware\_tmp_pmd_after_refactoring\src\main\java\nl\tudelft\jpacman\sprite\AnimatedSprite.java">
+<violation beginline="11" endline="163" begincolumn="8" endcolumn="1" rule="ExcessiveClassLength" ruleset="Design" package="nl.tudelft.jpacman.sprite" class="AnimatedSprite" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_design.html#excessiveclasslength" priority="3">
+Avoid really long classes.
+</violation>
+<violation beginline="75" endline="75" begincolumn="26" endcolumn="88" rule="ExcessiveParameterList" ruleset="Design" package="nl.tudelft.jpacman.sprite" class="AnimatedSprite" method="AnimatedSprite" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_design.html#excessiveparameterlist" priority="3">
+Avoid long parameter lists.
+</violation>
+<violation beginline="120" endline="120" begincolumn="21" endcolumn="76" rule="ExcessiveParameterList" ruleset="Design" package="nl.tudelft.jpacman.sprite" class="AnimatedSprite" method="draw" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_design.html#excessiveparameterlist" priority="3">
+Avoid long parameter lists.
+</violation>
+<violation beginline="126" endline="126" begincolumn="24" endcolumn="60" rule="ExcessiveParameterList" ruleset="Design" package="nl.tudelft.jpacman.sprite" class="AnimatedSprite" method="split" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_design.html#excessiveparameterlist" priority="3">
+Avoid long parameter lists.
+</violation>
+</file>
+<file name="C:\UNCC\midtermSoftware\_tmp_pmd_after_refactoring\src\main\java\nl\tudelft\jpacman\sprite\EmptySprite.java">
+<violation beginline="14" endline="14" begincolumn="21" endcolumn="76" rule="ExcessiveParameterList" ruleset="Design" package="nl.tudelft.jpacman.sprite" class="EmptySprite" method="draw" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_design.html#excessiveparameterlist" priority="3">
+Avoid long parameter lists.
+</violation>
+<violation beginline="19" endline="19" begincolumn="24" endcolumn="60" rule="ExcessiveParameterList" ruleset="Design" package="nl.tudelft.jpacman.sprite" class="EmptySprite" method="split" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_design.html#excessiveparameterlist" priority="3">
+Avoid long parameter lists.
+</violation>
+</file>
+<file name="C:\UNCC\midtermSoftware\_tmp_pmd_after_refactoring\src\main\java\nl\tudelft\jpacman\sprite\ImageSprite.java">
+<violation beginline="33" endline="33" begincolumn="21" endcolumn="76" rule="ExcessiveParameterList" ruleset="Design" package="nl.tudelft.jpacman.sprite" class="ImageSprite" method="draw" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_design.html#excessiveparameterlist" priority="3">
+Avoid long parameter lists.
+</violation>
+<violation beginline="39" endline="39" begincolumn="24" endcolumn="60" rule="ExcessiveParameterList" ruleset="Design" package="nl.tudelft.jpacman.sprite" class="ImageSprite" method="split" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_design.html#excessiveparameterlist" priority="3">
+Avoid long parameter lists.
+</violation>
+</file>
+<file name="C:\UNCC\midtermSoftware\_tmp_pmd_after_refactoring\src\main\java\nl\tudelft\jpacman\sprite\Sprite.java">
+<violation beginline="26" endline="26" begincolumn="14" endcolumn="69" rule="ExcessiveParameterList" ruleset="Design" package="nl.tudelft.jpacman.sprite" class="Sprite" method="draw" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_design.html#excessiveparameterlist" priority="3">
+Avoid long parameter lists.
+</violation>
+<violation beginline="42" endline="42" begincolumn="17" endcolumn="53" rule="ExcessiveParameterList" ruleset="Design" package="nl.tudelft.jpacman.sprite" class="Sprite" method="split" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_design.html#excessiveparameterlist" priority="3">
+Avoid long parameter lists.
+</violation>
+</file>
+<file name="C:\UNCC\midtermSoftware\_tmp_pmd_after_refactoring\src\main\java\nl\tudelft\jpacman\sprite\SpriteStore.java">
+<violation beginline="89" endline="90" begincolumn="47" endcolumn="71" rule="ExcessiveParameterList" ruleset="Design" package="nl.tudelft.jpacman.sprite" class="SpriteStore" method="createAnimatedSprite" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_design.html#excessiveparameterlist" priority="3">
+Avoid long parameter lists.
+</violation>
+</file>
+<file name="C:\UNCC\midtermSoftware\_tmp_pmd_after_refactoring\src\main\java\nl\tudelft\jpacman\ui\PacManUI.java">
+<violation beginline="68" endline="70" begincolumn="20" endcolumn="50" rule="ExcessiveParameterList" ruleset="Design" package="nl.tudelft.jpacman.ui" class="PacManUI" method="PacManUI" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_design.html#excessiveparameterlist" priority="3">
+Avoid long parameter lists.
+</violation>
+</file>
+</pmd>
